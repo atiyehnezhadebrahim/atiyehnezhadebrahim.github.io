@@ -3,583 +3,623 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Atiyeh Nezhadebrahim — Neurorobotics Researcher</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <title>Atiyeh Nezhadebrahim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --cream: #f5f0e8; --sand: #e8dfc8; --ink: #1a1410;
-      --ink-light: #4a3f35; --rust: #b05a3a; --rust-light: #d4785a;
-      --gold: #c8a050; --border: rgba(26,20,16,0.12);
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --light-gray: #f2f2ef;
+      --border: #e0ddd8;
+      --text: #1c1c1c;
+      --text-soft: #555550;
+      --text-muted: #888882;
+      --accent: #8b3a2a;
+      --accent-light: #c06040;
+      --link: #2b5b8a;
     }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; line-height: 1.75; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(245,240,232,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.15em; color: var(--rust); text-transform: uppercase; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.25s; }
-    .nav-links a:hover { color: var(--rust); }
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+    }
 
-    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
-    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem 3rem; }
-    .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--rust); text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-    .hero-name { font-size: clamp(3rem, 5vw, 5.2rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-    .hero-name em { font-style: italic; color: var(--rust); }
-    .hero-desc { font-size: 1.2rem; color: var(--ink-light); max-width: 40ch; margin-bottom: 2.5rem; font-weight: 300; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
-    .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.7rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); color: var(--ink); transition: all 0.3s; position: relative; overflow: hidden; }
-    .btn::before { content: ''; position: absolute; inset: 0; background: var(--ink); transform: translateX(-101%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
-    .btn span { position: relative; z-index: 1; }
-    .btn:hover { color: var(--cream); }
-    .btn:hover::before { transform: translateX(0); }
-    .btn-rust { background: var(--rust); border-color: var(--rust); color: var(--cream); }
-    .btn-rust::before { background: var(--ink); }
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 0.85rem 2rem;
+    }
+    nav a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-soft);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
 
-    .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 8rem 3rem 4rem; opacity: 0; animation: fadeIn 1.2s 0.5s forwards; }
-    .photo-frame { position: relative; width: 320px; height: 400px; }
-    .photo-frame::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid var(--rust); z-index: 0; }
-    .photo-placeholder { width: 100%; height: 100%; background: var(--sand); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; overflow: hidden; }
-    .photo-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .photo-hint { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--ink-light); text-transform: uppercase; text-align: center; padding: 1rem; opacity: 0.45; line-height: 1.8; }
-    .photo-icon { font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.2; }
-    .hero-rule { position: absolute; left: 3rem; bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
-    .hero-rule::before { content: ''; width: 40px; height: 1px; background: var(--rust); }
-    .hero-rule span { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--rust); text-transform: uppercase; }
+    /* ── MAIN WRAPPER ── */
+    .page { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
 
-    section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
-    .section-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3.5rem; }
-    .section-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--rust); text-transform: uppercase; }
-    .section-title { font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 300; letter-spacing: -0.02em; white-space: nowrap; }
-    .section-title em { font-style: italic; color: var(--rust); }
-    .section-line { flex: 1; height: 1px; background: var(--border); }
+    /* ── HERO ── */
+    #hero {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 3.5rem;
+      align-items: start;
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+    }
 
-    #about { border-top: 1px solid var(--border); }
-    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; }
-    .about-text p { font-size: 1.15rem; font-weight: 300; color: var(--ink-light); margin-bottom: 1.2rem; }
-    .about-text p strong { color: var(--ink); font-weight: 600; }
-    .about-sidebar { background: var(--sand); padding: 2rem; border-left: 3px solid var(--rust); }
-    .sidebar-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--rust); text-transform: uppercase; margin-bottom: 0.3rem; }
-    .sidebar-value { font-size: 1rem; color: var(--ink); margin-bottom: 1.2rem; line-height: 1.5; }
-    .sidebar-value a { color: var(--rust); text-decoration: none; }
-    .sidebar-value a:hover { text-decoration: underline; }
+    .hero-name {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
 
-    #education { background: var(--sand); padding: 6rem 3rem; max-width: none; }
-    #education .inner { max-width: 1100px; margin: 0 auto; }
-    .edu-item { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
-    .edu-item:last-child { border-bottom: none; }
-    .edu-year { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; color: var(--rust); padding-top: 0.3rem; line-height: 1.6; }
-    .edu-degree { font-size: 1.3rem; font-weight: 400; margin-bottom: 0.3rem; }
-    .edu-school { font-size: 1.05rem; font-style: italic; color: var(--ink-light); margin-bottom: 0.5rem; }
-    .edu-detail { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 0.4rem; }
-    .edu-courses { font-size: 0.98rem; color: var(--ink-light); font-weight: 300; }
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      margin-bottom: 0.85rem;
+    }
+    .hero-bio a { color: var(--link); text-decoration: none; }
+    .hero-bio a:hover { text-decoration: underline; }
+    .hero-bio strong { color: var(--text); font-weight: 500; }
 
-    .exp-item { padding: 2.5rem 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 200px 1fr; gap: 2rem; }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-period { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; color: var(--rust); padding-top: 0.3rem; line-height: 1.6; }
-    .exp-title { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.2rem; }
-    .exp-company { font-size: 1.02rem; font-style: italic; color: var(--ink-light); margin-bottom: 0.8rem; }
-    .exp-bullets { list-style: none; }
-    .exp-bullets li { font-size: 1rem; color: var(--ink-light); font-weight: 300; padding-left: 1.3rem; position: relative; margin-bottom: 0.45rem; line-height: 1.6; }
-    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.75rem; }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+    }
+    .hero-links a {
+      font-size: 0.875rem;
+      color: var(--link);
+      text-decoration: none;
+      padding: 0.3rem 0;
+    }
+    .hero-links a:hover { text-decoration: underline; }
+    .hero-links .sep {
+      color: var(--border);
+      padding: 0 0.1rem;
+    }
 
-    #publications { background: var(--sand); padding: 6rem 3rem; max-width: none; }
-    #publications .inner { max-width: 1100px; margin: 0 auto; }
-    .pub-group-title { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 1.5rem; margin-top: 2.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-    .pub-group-title:first-of-type { margin-top: 0; }
-    .pub-item { padding: 1.3rem 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 10px 1fr; gap: 1.3rem; align-items: start; }
+    /* photo */
+    .hero-photo {
+      position: relative;
+      padding-top: 1rem;
+    }
+    .hero-photo img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .photo-fallback {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--light-gray);
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .photo-fallback span {
+      font-size: 3rem;
+      opacity: 0.2;
+    }
+    .photo-fallback p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.4rem;
+      color: var(--text);
+    }
+
+    /* ── RESEARCH INTERESTS ── */
+    .interests-text {
+      font-size: 1rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      max-width: 70ch;
+    }
+    .interests-text p { margin-bottom: 0.9rem; }
+    .interests-text p:last-child { margin-bottom: 0; }
+    .interests-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── NEWS ── */
+    .news-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .news-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+    .news-date {
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 0.1rem;
+      white-space: nowrap;
+    }
+    .news-text { color: var(--text-soft); font-weight: 300; }
+    .news-text strong { color: var(--text); font-weight: 500; }
+    .news-text a { color: var(--link); text-decoration: none; }
+    .news-text a:hover { text-decoration: underline; }
+
+    /* ── PROJECTS ── */
+    .project {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .project:first-of-type { padding-top: 0; }
+    .project:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+    .project-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--light-gray);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .project-name {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .project-name em { font-style: italic; }
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      line-height: 1.65;
+      margin-bottom: 0.7rem;
+    }
+    .project-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .chip {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-group {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-group:first-of-type { margin-top: 0; }
+
+    .pub-item {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed var(--border);
+      align-items: baseline;
+    }
     .pub-item:last-child { border-bottom: none; }
-    .pub-dot { width: 7px; height: 7px; background: var(--rust); border-radius: 50%; margin-top: 0.65rem; flex-shrink: 0; }
-    .pub-text { font-size: 1rem; color: var(--ink-light); font-weight: 300; line-height: 1.7; }
-    .pub-text strong { color: var(--ink); font-weight: 600; }
-    .pub-status { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-top: 0.3rem; }
+    .pub-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.65rem;
+    }
+    .pub-text {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+    .pub-text strong { color: var(--text); font-weight: 500; }
+    .pub-text em { font-style: italic; }
+    .pub-status {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: #fff5ee;
+      border: 1px solid #f0c8a8;
+      color: #a05020;
+      padding: 0.1rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
 
-    #projects { background: var(--ink); color: var(--cream); padding: 6rem 3rem; max-width: none; }
-    #projects .inner { max-width: 1100px; margin: 0 auto; }
-    #projects .section-title { color: var(--cream); }
-    #projects .section-num { color: var(--rust-light); }
-    #projects .section-line { background: rgba(245,240,232,0.15); }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .project-card { border: 1px solid rgba(245,240,232,0.15); padding: 2rem; position: relative; transition: border-color 0.3s, transform 0.3s; }
-    .project-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: var(--rust-light); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .project-card:hover { border-color: rgba(245,240,232,0.3); transform: translateY(-4px); }
-    .project-card:hover::after { width: 100%; }
-    .project-tag { font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.12em; color: var(--rust-light); text-transform: uppercase; margin-bottom: 0.8rem; }
-    .project-name { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.7rem; color: var(--cream); }
-    .project-desc { font-size: 0.98rem; color: rgba(245,240,232,0.6); font-weight: 300; line-height: 1.65; margin-bottom: 1.2rem; }
-    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tech-chip { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.28rem 0.6rem; border: 1px solid rgba(245,240,232,0.2); color: rgba(245,240,232,0.45); }
+    /* ── CONTACT ── */
+    .contact-text {
+      font-size: 1rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      max-width: 60ch;
+      margin-bottom: 1.2rem;
+    }
+    .contact-text a { color: var(--link); text-decoration: none; }
+    .contact-text a:hover { text-decoration: underline; }
 
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
-    .skill-group h3 { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-    .skill-list li { font-size: 1rem; color: var(--ink-light); padding-left: 1.1rem; position: relative; }
-    .skill-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.75rem; }
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
 
-    #certificates { background: var(--sand); padding: 5rem 3rem; max-width: none; }
-    #certificates .inner { max-width: 1100px; margin: 0 auto; }
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .cert-card { background: var(--cream); padding: 1.6rem; border-left: 3px solid var(--gold); }
-    .cert-date { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
-    .cert-name { font-size: 1.05rem; font-weight: 400; color: var(--ink); line-height: 1.45; }
-    .cert-issuer { font-size: 0.92rem; font-style: italic; color: var(--ink-light); margin-top: 0.3rem; }
-
-    #contact { background: var(--cream); border-top: 1px solid var(--border); text-align: center; padding: 5rem 3rem; max-width: none; }
-    #contact .inner { max-width: 620px; margin: 0 auto; }
-    .contact-title { font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 1rem; }
-    .contact-title em { color: var(--rust); font-style: italic; }
-    .contact-sub { font-size: 1.1rem; color: var(--ink-light); margin-bottom: 2.5rem; }
-    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .footer-bar { background: var(--ink); color: rgba(245,240,232,0.4); text-align: center; padding: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1rem; }
-      #hero { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .hero-left { padding: 7rem 1.5rem 3rem; }
-      section { padding: 4rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .edu-item, .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      #education, #publications, #projects, #certificates, #contact { padding: 4rem 1.5rem; }
-      .pub-item { grid-template-columns: 1fr; }
-      .pub-dot { display: none; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      #hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .hero-photo { order: -1; max-width: 200px; }
+      .project {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .news-item {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+      nav { gap: 1.2rem; flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">A. Nezhadebrahim</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#projects">Research</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <a href="#interests">Research</a>
+  <a href="#projects">Projects</a>
+  <a href="#publications">Publications</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <p class="hero-tag">Interdisciplinary Researcher · Neurorobotics</p>
-    <h1 class="hero-name">Atiyeh<br><em>Nezhadebrahim</em></h1>
-    <p class="hero-desc">
-      Bridging neuroscience, biomechanics, and robotics — building computational models of movement, neural control, and neuromusculoskeletal systems.
-    </p>
-    <div class="hero-links">
-      <a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank" class="btn btn-rust"><span>LinkedIn</span></a>
-      <a href="https://github.com/atiye-nejad" target="_blank" class="btn"><span>GitHub</span></a>
-      <a href="mailto:Atiye.Nejadebrahim@yahoo.com" class="btn"><span>Email</span></a>
-    </div>
-    <div class="hero-rule"><span>Scroll to explore</span></div>
-  </div>
+<div class="page">
 
-  <div class="hero-right">
-    <div class="photo-frame">
-      <div class="photo-placeholder">
-        <img src="photo.jpg" alt="Atiyeh Nezhadebrahim">
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-left">
+      <h1 class="hero-name">Atiyeh Nezhadebrahim</h1>
+
+      <p class="hero-bio">
+        Hello! I am an interdisciplinary researcher working at the intersection of <strong>computational neuroscience, biomechanics, and neurorobotics</strong>. My work focuses on understanding how the nervous system orchestrates movement — and translating that understanding into computational models of neural circuits and neuromusculoskeletal systems.
+      </p>
+      <p class="hero-bio">
+        I hold two master's degrees — in <strong>Animal Biology (Physiology)</strong> from Shahed University and in <strong>Mechanical Engineering</strong> from K.N. Toosi University of Technology — which together give me an unusual vantage point on how biology and engineering meet in motor control. I have worked at the <a href="https://is.mpg.de/en" target="_blank">Max Planck Institute for Intelligent Systems</a> in Stuttgart, the <a href="https://www.dtu.dk/" target="_blank">Denmark Technical University</a> in Copenhagen, and multiple neuroscience research centers in Tehran.
+      </p>
+      <p class="hero-bio">
+        I am currently based in Stuttgart, Germany, and am looking for PhD and research opportunities in neurorobotics and computational neuroscience. Feel free to reach out — I am always happy to discuss research, ideas, or potential collaborations.
+      </p>
+
+      <div class="hero-links">
+        <a href="mailto:Atiye.Nejadebrahim@yahoo.com">Email</a>
+        <span class="sep">/</span>
+        <a href="cv.pdf" target="_blank">CV</a>
+        <span class="sep">/</span>
+        <a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank">LinkedIn</a>
+        <span class="sep">/</span>
+        <a href="https://github.com/atiye-nejad" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Atiyeh Nezhadebrahim"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="photo-fallback" style="display:none;">
+        <span>🖼</span>
+        <p>photo.jpg</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal">
-    <span class="section-num">01</span>
-    <h2 class="section-title">About <em>Me</em></h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>I am <strong>Atiyeh Nezhadebrahim</strong>, an interdisciplinary researcher at the intersection of neuroscience, biomechanics, and robotics. My work focuses on understanding how the nervous system controls movement — and translating that understanding into computational models.</p>
-      <p>With two master's degrees — one in <strong>Animal Biology (Physiology)</strong> and one in <strong>Mechanical Engineering</strong> — I bring a uniquely cross-disciplinary perspective to neurorobotics research. I have developed computational models of Central Pattern Generators, neuromusculoskeletal systems, and Parkinson's disease motor symptoms.</p>
-      <p>My research experience spans the Max Planck Institute for Intelligent Systems in Stuttgart, Denmark Technical University in Copenhagen, and multiple research centers in Tehran. I am passionate about bridging biological motor control and intelligent robotic systems.</p>
-    </div>
-    <div class="about-sidebar reveal">
-      <p class="sidebar-label">Email</p>
-      <p class="sidebar-value"><a href="mailto:Atiye.Nejadebrahim@yahoo.com">Atiye.Nejadebrahim@yahoo.com</a></p>
-
-      <p class="sidebar-label">LinkedIn</p>
-      <p class="sidebar-value"><a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank">atiyeh-nezhadebrahim</a></p>
-
-      <p class="sidebar-label">GitHub</p>
-      <p class="sidebar-value"><a href="https://github.com/atiye-nejad" target="_blank">@atiye-nejad</a></p>
-
-      <p class="sidebar-label">Languages</p>
-      <p class="sidebar-value">Persian (Native) · English (TOEFL 92)</p>
-
-      <p class="sidebar-label">Location</p>
-      <p class="sidebar-value">Stuttgart, Germany</p>
+  <!-- RESEARCH INTERESTS -->
+  <div id="interests" class="section">
+    <h2 class="section-title">Research Interests</h2>
+    <div class="interests-text">
+      <p>
+        I am broadly interested in how the nervous system generates and controls movement, with a focus on <strong>computational modeling of neural circuits</strong> — particularly Central Pattern Generators (CPGs) — and their integration with musculoskeletal models. I find it fascinating how relatively simple spinal circuits, modulated by descending signals and sensory feedback, can produce the rich repertoire of rhythmic and goal-directed movements we observe in animals and humans.
+      </p>
+      <p>
+        My work uses spiking neural network models (NEST Simulator) coupled with biomechanical simulations (OpenSim) to study how <strong>neuromodulation — especially dopaminergic pathways — shapes motor output</strong>. This has led me into questions about pathological motor control, including how disruptions to these circuits produce the motor symptoms of Parkinson's disease.
+      </p>
+      <p>
+        More recently, I have been drawn to questions of <strong>sensorimotor integration during reaching and locomotion</strong>, combining electrophysiological recording techniques (LFP, EMG) with motion capture and force plate measurements to bridge computational models and experimental data. I see computational neurorobotics as a powerful language for connecting neuroscience and engineering — and I want to push that bridge further.
+      </p>
     </div>
   </div>
-</section>
 
-<!-- EDUCATION -->
-<div id="education">
-  <div class="inner">
-    <div class="section-header reveal">
-      <span class="section-num">02</span>
-      <h2 class="section-title"><em>Education</em></h2>
-      <div class="section-line"></div>
+  <!-- NEWS -->
+  <div id="news" class="section">
+    <h2 class="section-title">News</h2>
+    <div class="news-list">
+      <div class="news-item">
+        <span class="news-date">Mar 2026</span>
+        <span class="news-text">Actively seeking <strong>PhD positions and research opportunities</strong> in neurorobotics and computational neuroscience — open to collaborations and discussions.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Dec 2024</span>
+        <span class="news-text">Completed a comprehensive course in <strong>Kinesiological Electromyography</strong> at NBML, Tehran.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jul 2024</span>
+        <span class="news-text">Completed the <strong>Computational Neuroscience</strong> course at <a href="https://neuromatch.io/computational-neuroscience/" target="_blank">Neuromatch Academy</a>.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Apr 2024</span>
+        <span class="news-text">Presented work on dopamine modulation of locomotor patterns through ion channel conductance in CPGs at the <strong>Society for Neural Control of Movement</strong> conference, Croatia.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">May 2024</span>
+        <span class="news-text">Started as Graduate Researcher at the <strong>Cellular and Molecular Research Center, Iran University of Medical Sciences</strong>, working on neuromusculoskeletal models of reaching.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Apr 2023</span>
+        <span class="news-text">Joined the <strong>Neurorobotic Technology Lab at Denmark Technical University</strong> as Scientific Researcher, building CPG and Parkinson's disease motor models.</span>
+      </div>
     </div>
+  </div>
 
-    <div class="edu-item reveal">
-      <div class="edu-year">Sept 2017 —<br>Sept 2019</div>
+  <!-- PROJECTS -->
+  <div id="projects" class="section">
+    <h2 class="section-title">Research Highlights</h2>
+
+    <div class="project">
       <div>
-        <p class="edu-degree">M.Sc. in Animal Biology — Minor in Physiology</p>
-        <p class="edu-school">Shahed University, Tehran</p>
-        <p class="edu-detail">GPA: 18.83/20 · Ranked 1st among M.Sc. students of Animal Physiology</p>
-        <p class="edu-courses">Musculoskeletal Physiology · Sensory System Physiology · Central Nervous System · Animal Physiology</p>
+        <img src="cpg-model.jpg" alt="CPG model"
+             style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:3px; border:1px solid var(--border); background:var(--light-gray);"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="project-img-placeholder" style="display:none;">cpg-model.jpg</div>
       </div>
-    </div>
-
-    <div class="edu-item reveal">
-      <div class="edu-year">Sept 2011 —<br>Sept 2013</div>
       <div>
-        <p class="edu-degree">M.Sc. in Mechanical Engineering</p>
-        <p class="edu-school">K.N. Toosi University of Technology, Tehran</p>
-        <p class="edu-detail">GPA: 18.87/20 · Ranked 1st among M.Sc. students of Mechanics</p>
-        <p class="edu-courses">Finite Element Method · Continuum Mechanics · Advanced Engineering Mathematics</p>
-      </div>
-    </div>
-
-    <div class="edu-item reveal">
-      <div class="edu-year">Sept 2005 —<br>May 2010</div>
-      <div>
-        <p class="edu-degree">B.Sc. in Mechanical Engineering</p>
-        <p class="edu-school">Bu-Ali Sina University, Tehran</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-header reveal">
-    <span class="section-num">03</span>
-    <h2 class="section-title">Research <em>Experience</em></h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Nov 2025 —<br>Mar 2026</div>
-    <div>
-      <p class="exp-title">PhD Student</p>
-      <p class="exp-company">Max Planck Institute for Intelligent Systems — Stuttgart, Germany</p>
-      <ul class="exp-bullets">
-        <li>Reviewed and synthesized scientific literature on human locomotion, balance control, and neuromuscular function to identify research gaps and refine study aims.</li>
-        <li>Assisted with 3D motion capture experiments, including marker placement, system calibration, and recording trials.</li>
-        <li>Collected force plate data and performed basic checks: trial selection and exporting data for further analysis.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">May 2024 —<br>May 2025</div>
-    <div>
-      <p class="exp-title">Graduate Researcher</p>
-      <p class="exp-company">Iran University of Medical Sciences, Cellular and Molecular Research Center — Tehran</p>
-      <ul class="exp-bullets">
-        <li>Developing a neuromusculoskeletal model of reaching task by connecting a Spiking Neural Network (SNN) model of CPG and an arm model.</li>
-        <li>Investigating how neural activity and sensory feedback shape movement.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Apr 2023 —<br>Mar 2024</div>
-    <div>
-      <p class="exp-title">Scientific Researcher</p>
-      <p class="exp-company">Neurorobotic Technology Lab, Denmark Technical University — Copenhagen, Denmark</p>
-      <ul class="exp-bullets">
-        <li>Built a computational model of rhythmic movement in Central Pattern Generators of the spinal cord.</li>
-        <li>Developed a neuromusculoskeletal model to replicate Parkinson's disease (PD) motor symptoms.</li>
-        <li>Teaching Assistant in Bioengineering Course 27020; journal and conference reviewer.</li>
-        <li>Drafted and submitted two grant proposals to secure research funding.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Jan 2019 —<br>Sept 2019</div>
-    <div>
-      <p class="exp-title">MSc Thesis — Animal Biology</p>
-      <p class="exp-company">Shahed University — Tehran</p>
-      <ul class="exp-bullets">
-        <li>Developed an animal model of motor seizures in rats as a platform for studying neural activity and seizure induction.</li>
-        <li>Performed intracranial electrode implantation and recorded Local Field Potentials (LFPs) to assess neural dynamics.</li>
-        <li>Applied pharmacological manipulation (chemoconvulsants) to modulate brain activity and model epilepsy.</li>
-        <li>Implemented signal processing techniques to analyze electrophysiological recordings.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Sept 2014 —<br>Aug 2017</div>
-    <div>
-      <p class="exp-title">Research Intern</p>
-      <p class="exp-company">Iran University of Medical Sciences — Tehran</p>
-      <ul class="exp-bullets">
-        <li>Attended neuroanatomy, neurophysiology, and neurobiology courses, building a solid foundation in brain structure and function.</li>
-        <li>Conducted literature reviews on clinical and experimental neuroscience.</li>
-        <li>Participated actively in the weekly journal club of the anatomy and physiology group.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Sept 2011 —<br>Sept 2015</div>
-    <div>
-      <p class="exp-title">Instructor — Mechanical Engineering Department</p>
-      <p class="exp-company">Azad University — Tehran</p>
-      <ul class="exp-bullets">
-        <li>Developed comprehensive course materials for biomechanical principles.</li>
-        <li>Conducted regular assessments, testing over 500 students on presented materials.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Sept 2012 —<br>Sept 2013</div>
-    <div>
-      <p class="exp-title">MSc Thesis — Mechanical Engineering</p>
-      <p class="exp-company">K.N. Toosi University of Technology — Tehran</p>
-      <ul class="exp-bullets">
-        <li>Developed a Finite Element Model for pseudoelastic behavior of shape memory alloys embedded in a hybrid composite plate.</li>
-        <li>Evaluated low-velocity impacts on energy dissipation and vibration amplitude reduction.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">Jun 2009 —<br>May 2010</div>
-    <div>
-      <p class="exp-title">BSc Thesis — Mechanical Engineering</p>
-      <p class="exp-company">Bu-Ali Sina University — Hamadan</p>
-      <ul class="exp-bullets">
-        <li>Developed a new method for lateral extrusion on pure aluminum.</li>
-        <li>Tested and analyzed mechanical properties of extruded products.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PUBLICATIONS -->
-<div id="publications">
-  <div class="inner">
-    <div class="section-header reveal">
-      <span class="section-num">04</span>
-      <h2 class="section-title"><em>Publications</em></h2>
-      <div class="section-line"></div>
-    </div>
-
-    <p class="pub-group-title">Journal Papers</p>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nejadebrahim A</strong>, Karami M, Roghani M, Fakhroleslam Z. Injection of colchicine into the dorsal striatum of rat's brain induces epilepsy. <em>Journal of Basic and Clinical Pathophysiology</em>. 8(2):15–21 (2020). DOI: 10.22070/jbcp.2020.5511.1133</div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text">Fakhroleslam Z, Karami M, Roghani M, <strong>Nejadebrahim A</strong>. Alive Animal Model for Epilepsy by Intradorsal Striatum Injection of Colchicine. <em>International Journal of Epilepsy</em> (2021). DOI: 10.1055/s-0041-1727403</div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nejadebrahim A</strong>, Karami M, Roghani M. Intrastriatal colchicine induces seizure-like activity in the rat: an electrophysiological analysis.<p class="pub-status">Under Review (2023)</p></div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text">Strohmer B, Tolu S, <strong>Nejadebrahim A</strong>. Investigating the effect of gap junctions on motor neuron activity by means of a spinal circuit model. <em>Biomedical Physics and Engineering</em>.<p class="pub-status">Under Review (2024)</p></div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nejadebrahim A</strong>, Tolu S, Strohmer B. From Ion Channels to Muscles: Neuromodulation of locomotor pattern through ion channels within Central Pattern Generators.<p class="pub-status">Under Preparation (2024)</p></div>
-    </div>
-
-    <p class="pub-group-title">Conference Abstracts & Papers</p>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nezhadbrahim A</strong>, Tolu S. Dopamine modulator shapes locomotor patterns through ion channel conductance within Central Pattern Generators. <em>Society for Neural Control of Movement</em>, Croatia, April 2024.</div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nezhadbrahim A</strong>, Karami M. Animal models of Epilepsy: use and limitations. <em>7th Basic and Clinical Neuroscience Congress</em>, Iran, 2018.</div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nezhadebrahim A</strong>, Karimzadeh F. The role of Nrg1/ERbB4 signaling in learning and memory. <em>6th Basic and Clinical Neuroscience Congress</em>, Iran, 2017.</div>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-dot"></div>
-      <div class="pub-text"><strong>Nezhadebrahim A</strong>. Effect of lateral extrusion on micro-structure and mechanical properties of pure aluminum. <em>13th International Conference on Advances in Materials & Processing Technologies (AMPT)</em>, France, 2010.</div>
-    </div>
-  </div>
-</div>
-
-<!-- RESEARCH HIGHLIGHTS -->
-<div id="projects">
-  <div class="inner">
-    <div class="section-header reveal">
-      <span class="section-num">05</span>
-      <h2 class="section-title">Research <em>Highlights</em></h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <img src="cpg-model.jpg" style="width:100%; height:180px; object-fit:cover; margin-bottom:1.2rem;">
         <p class="project-tag">Neurorobotics · CPG Modelling</p>
-        <h3 class="project-name">Central Pattern Generator Model</h3>
-        <p class="project-desc">Computational model of rhythmic movement in spinal cord CPGs, investigating how ion channel conductance and dopamine neuromodulation shape locomotor patterns.</p>
-        <div class="project-tech"><span class="tech-chip">Python</span><span class="tech-chip">NEST Simulator</span><span class="tech-chip">SNN</span><span class="tech-chip">ROS2</span></div>
+        <h3 class="project-name">Central Pattern Generator &amp; Dopamine Neuromodulation</h3>
+        <p class="project-desc">Computational model of rhythmic movement in spinal cord CPGs, investigating how ion channel conductance and dopaminergic neuromodulation shape locomotor patterns. Developed at DTU's Neurorobotic Technology Lab and presented at the Society for Neural Control of Movement (Croatia, 2024).</p>
+        <div class="project-chips">
+          <span class="chip">Python</span>
+          <span class="chip">NEST Simulator</span>
+          <span class="chip">SNN</span>
+          <span class="chip">ROS2</span>
+        </div>
       </div>
-      <div class="project-card reveal">
-        <p class="project-tag">Computational Neuroscience</p>
-        <h3 class="project-name">Parkinson's Disease Motor Model</h3>
-        <p class="project-desc">Neuromusculoskeletal model replicating Parkinson's disease motor symptoms, linking spinal circuit dynamics to observable movement pathology.</p>
-        <div class="project-tech"><span class="tech-chip">NEST Simulator</span><span class="tech-chip">Opensim</span><span class="tech-chip">Matlab</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-img-placeholder">figure coming soon</div>
+      <div>
+        <p class="project-tag">Computational Neuroscience · Motor Pathology</p>
+        <h3 class="project-name">Parkinson's Disease Neuromusculoskeletal Model</h3>
+        <p class="project-desc">Neuromusculoskeletal model linking spinal circuit dynamics to the observable motor symptoms of Parkinson's disease — connecting CPG-level disruptions to limb-level movement pathology. Developed in collaboration with DTU's Neurorobotic Technology Lab.</p>
+        <div class="project-chips">
+          <span class="chip">NEST Simulator</span>
+          <span class="chip">OpenSim</span>
+          <span class="chip">MATLAB</span>
+        </div>
       </div>
-      <div class="project-card reveal">
-        <img src="seizure-lfp.jpg" style="width:100%; height:180px; object-fit:cover; margin-bottom:1.2rem;">
+    </div>
+
+    <div class="project">
+      <div>
+        <img src="seizure-lfp.jpg" alt="LFP seizure analysis"
+             style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:3px; border:1px solid var(--border); background:var(--light-gray);"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="project-img-placeholder" style="display:none;">seizure-lfp.jpg</div>
+      </div>
+      <div>
         <p class="project-tag">Electrophysiology · Animal Models</p>
-        <h3 class="project-name">Seizure Model & LFP Analysis</h3>
-        <p class="project-desc">Rat model of motor seizures via intrastriatal colchicine injection, with intracranial electrode implantation and electrophysiological LFP signal analysis.</p>
-        <div class="project-tech"><span class="tech-chip">Electrophysiology</span><span class="tech-chip">LFP</span><span class="tech-chip">Signal Processing</span><span class="tech-chip">Python</span></div>
-      </div>
-      <div class="project-card reveal">
-        <p class="project-tag">Human Locomotion · Biomechanics</p>
-        <h3 class="project-name">Locomotion & Balance Research</h3>
-        <p class="project-desc">3D motion capture experiments and force plate data collection to study human locomotion, balance control, and neuromuscular function.</p>
-        <div class="project-tech"><span class="tech-chip">Motion Capture</span><span class="tech-chip">Force Plate</span><span class="tech-chip">EMG</span><span class="tech-chip">Matlab</span></div>
+        <h3 class="project-name">Seizure Model &amp; LFP Electrophysiology</h3>
+        <p class="project-desc">Rat model of motor seizures via intrastriatal colchicine injection. Performed intracranial electrode implantation, recorded Local Field Potentials (LFPs), and applied signal processing to analyze electrophysiological dynamics of seizure activity. This work led to two published papers.</p>
+        <div class="project-chips">
+          <span class="chip">Electrophysiology</span>
+          <span class="chip">LFP</span>
+          <span class="chip">Signal Processing</span>
+          <span class="chip">Python</span>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header reveal">
-    <span class="section-num">06</span>
-    <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <h3>Programming</h3>
-      <ul class="skill-list">
-        <li>Python</li>
-        <li>Matlab</li>
-        <li>C++ (Beginner)</li>
-      </ul>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Robotics & Simulation</h3>
-      <ul class="skill-list">
-        <li>ROS2 (nodes, topics, publishers)</li>
-        <li>NEST Simulator (SNN)</li>
-        <li>Opensim (Beginner)</li>
-      </ul>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Electrophysiology</h3>
-      <ul class="skill-list">
-        <li>LFP, EEG, EMG recording</li>
-        <li>Neural signal acquisition & analysis</li>
-        <li>Stereotaxic surgery</li>
-        <li>Electrode implantation</li>
-      </ul>
-    </div>
-    <div class="skill-group reveal">
-      <h3>Biomechanics</h3>
-      <ul class="skill-list">
-        <li>3D Motion Capture</li>
-        <li>Force plate data acquisition</li>
-        <li>Gait & movement analysis</li>
-        <li>CAD: Catia, Solidworks</li>
-        <li>Finite Element Method</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CERTIFICATES -->
-<div id="certificates">
-  <div class="inner">
-    <div class="section-header reveal">
-      <span class="section-num">07</span>
-      <h2 class="section-title"><em>Certificates</em></h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="cert-grid">
-      <div class="cert-card reveal">
-        <p class="cert-date">December 2024</p>
-        <p class="cert-name">Comprehensive Course in Kinesiological Electromyography — from Physiological Origins to Recording and Processing</p>
-        <p class="cert-issuer">NBML, Tehran, Iran</p>
-      </div>
-      <div class="cert-card reveal">
-        <p class="cert-date">July 2024</p>
-        <p class="cert-name">Computational Neuroscience</p>
-        <p class="cert-issuer">Neuromatch Academy</p>
-      </div>
-      <div class="cert-card reveal">
-        <p class="cert-date">February 2024</p>
-        <p class="cert-name">TOEFL — Total Score: 92</p>
-        <p class="cert-issuer">ETS</p>
-      </div>
-      <div class="cert-card reveal">
-        <p class="cert-date">December 2017</p>
-        <p class="cert-name">Brain Signal Processing & its Application in Computational Neuroscience</p>
-        <p class="cert-issuer">NBML, Tehran, Iran</p>
+    <div class="project">
+      <div class="project-img-placeholder">motion capture</div>
+      <div>
+        <p class="project-tag">Biomechanics · Human Locomotion</p>
+        <h3 class="project-name">Neuromusculoskeletal Reaching Model</h3>
+        <p class="project-desc">Developing a neuromusculoskeletal model of reaching by connecting a Spiking Neural Network model of CPGs with an arm model, investigating how neural activity and sensory feedback shape goal-directed upper-limb movement. Ongoing at Iran University of Medical Sciences.</p>
+        <div class="project-chips">
+          <span class="chip">SNN</span>
+          <span class="chip">OpenSim</span>
+          <span class="chip">Motion Capture</span>
+          <span class="chip">EMG</span>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- CONTACT -->
-<div id="contact">
-  <div class="inner">
-    <h2 class="contact-title reveal">Let's <em>Connect</em></h2>
-    <p class="contact-sub reveal">Open to research collaborations, discussions, and opportunities in neurorobotics and computational neuroscience.</p>
-    <div class="contact-links reveal">
-      <a href="mailto:Atiye.Nejadebrahim@yahoo.com" class="btn btn-rust"><span>✉ Email Me</span></a>
-      <a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank" class="btn"><span>LinkedIn</span></a>
-      <a href="https://github.com/atiye-nejad" target="_blank" class="btn"><span>GitHub</span></a>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div id="publications" class="section">
+    <h2 class="section-title">Publications</h2>
+
+    <p class="pub-group">Journal Papers</p>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nejadebrahim A</strong>, Karami M, Roghani M, Fakhroleslam Z. Injection of colchicine into the dorsal striatum of rat's brain induces epilepsy. <em>Journal of Basic and Clinical Pathophysiology</em>. 8(2):15–21 (2020). DOI: 10.22070/jbcp.2020.5511.1133
+      </div>
     </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        Fakhroleslam Z, Karami M, Roghani M, <strong>Nejadebrahim A</strong>. Alive Animal Model for Epilepsy by Intradorsal Striatum Injection of Colchicine. <em>International Journal of Epilepsy</em> (2021). DOI: 10.1055/s-0041-1727403
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nejadebrahim A</strong>, Karami M, Roghani M. Intrastriatal colchicine induces seizure-like activity in the rat: an electrophysiological analysis.
+        <span class="pub-status">Under Review</span>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        Strohmer B, Tolu S, <strong>Nejadebrahim A</strong>. Investigating the effect of gap junctions on motor neuron activity by means of a spinal circuit model. <em>Biomedical Physics and Engineering</em>.
+        <span class="pub-status">Under Review</span>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nejadebrahim A</strong>, Tolu S, Strohmer B. From Ion Channels to Muscles: Neuromodulation of locomotor pattern through ion channels within Central Pattern Generators.
+        <span class="pub-status">In Preparation</span>
+      </div>
+    </div>
+
+    <p class="pub-group">Conference Abstracts &amp; Papers</p>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nezhadbrahim A</strong>, Tolu S. Dopamine modulator shapes locomotor patterns through ion channel conductance within Central Pattern Generators. <em>Society for Neural Control of Movement</em>, Croatia, April 2024.
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nezhadbrahim A</strong>, Karami M. Animal models of Epilepsy: use and limitations. <em>7th Basic and Clinical Neuroscience Congress</em>, Iran, 2018.
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nezhadebrahim A</strong>, Karimzadeh F. The role of Nrg1/ERbB4 signaling in learning and memory. <em>6th Basic and Clinical Neuroscience Congress</em>, Iran, 2017.
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-dot"></div>
+      <div class="pub-text">
+        <strong>Nezhadebrahim A</strong>. Effect of lateral extrusion on micro-structure and mechanical properties of pure aluminum. <em>13th International Conference on Advances in Materials &amp; Processing Technologies (AMPT)</em>, France, 2010.
+      </div>
+    </div>
+
   </div>
-</div>
 
-<div class="footer-bar">
-  © 2025 Atiyeh Nezhadebrahim — Interdisciplinary Researcher in Neurorobotics · Stuttgart, Germany
-</div>
+  <!-- CONTACT -->
+  <div id="contact" class="section">
+    <h2 class="section-title">Contact</h2>
+    <p class="contact-text">
+      I am open to research collaborations, discussions, and opportunities in neurorobotics and computational neuroscience. The best way to reach me is by <a href="mailto:Atiye.Nejadebrahim@yahoo.com">email</a>. You can also find me on <a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank">LinkedIn</a> or <a href="https://github.com/atiye-nejad" target="_blank">GitHub</a>.
+    </p>
+    <p class="contact-text">
+      Based in <strong>Stuttgart, Germany</strong>.
+    </p>
+  </div>
 
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 70);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  revealEls.forEach(el => observer.observe(el));
-</script>
+</div><!-- /page -->
+
+<footer>
+  © 2025 Atiyeh Nezhadebrahim &nbsp;·&nbsp; Neurorobotics &amp; Computational Neuroscience &nbsp;·&nbsp; Stuttgart, Germany
+</footer>
+
 </body>
 </html>
