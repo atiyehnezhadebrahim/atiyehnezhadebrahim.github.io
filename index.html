@@ -319,6 +319,75 @@
       text-transform: uppercase;
     }
 
+    /* ── HOBBIES ── */
+    .hobbies-intro {
+      font-size: 1rem;
+      color: var(--text-soft);
+      font-weight: 300;
+      max-width: 70ch;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+    .hobbies-intro strong { color: var(--text); font-weight: 500; }
+    .hobbies-intro em { font-style: italic; }
+
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .painting-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .painting-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: block;
+      transition: box-shadow 0.25s ease;
+    }
+    .painting-img:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    }
+
+    .painting-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--light-gray);
+      border-radius: 3px;
+      border: 1px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .painting-placeholder span {
+      font-size: 2rem;
+      opacity: 0.25;
+    }
+    .painting-placeholder p {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .painting-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+
     /* ── CONTACT ── */
     .contact-text {
       font-size: 1rem;
@@ -356,6 +425,10 @@
         gap: 0.2rem;
       }
       nav { gap: 1.2rem; flex-wrap: wrap; }
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+      }
     }
   </style>
 </head>
@@ -365,6 +438,7 @@
   <a href="#interests">Research</a>
   <a href="#projects">Projects</a>
   <a href="#publications">Publications</a>
+  <a href="#hobbies">Hobbies</a>
   <a href="#contact">Contact</a>
 </nav>
 
@@ -414,7 +488,7 @@
         I am broadly interested in understanding how the nervous system interacts with the musculoskeletal system to generate, control, and adapt movement. In particular, I am interested in understanding and modeling <strong>sensorimotor control</strong> by studying both healthy physiology and pathological conditions. My work focuses on computational modeling of neural circuits and their integration with biomechanical systems to study both rhythmic and goal-directed behaviors.
       </p>
       <p>
-        Using spiking neural networks alongside musculoskeletal simulations, I investigate how sensory feedback and neuromodulation shape motor output, and how disruptions in these processes contribute to neurological conditions such as Parkinson’s disease.
+        Using spiking neural networks alongside musculoskeletal simulations, I investigate how sensory feedback and neuromodulation shape motor output, and how disruptions in these processes contribute to neurological conditions such as Parkinson's disease.
       </p>
       <p>
         More generally, I am interested in sensorimotor integration across multiple scales—from neural dynamics to whole-body movement—and in bridging computational models with experimental data (e.g., EMG, motion capture, and force measurements).
@@ -614,11 +688,55 @@
 
   </div>
 
+  <!-- HOBBIES -->
+  <div id="hobbies" class="section">
+    <h2 class="section-title">Beyond Research</h2>
+
+    <p class="hobbies-intro">
+      In my free time I paint with watercolors and sketch. I am drawn to questions about human nature and culture, which I explore through <strong>cinema, documentary series, and anthropology</strong> — particularly films that illuminate the texture of lives and societies different from my own. Reading is an equally important thread: I gravitate toward <strong>biography, psychology, and existential thought</strong>. Currently reading Irvin Yalom's <em>Existential Psychotherapy</em>.
+    </p>
+
+    <!-- Painting Gallery -->
+    <div class="hobbies-grid">
+
+      <div class="painting-card">
+        <img src="painting-1.jpg" alt="Watercolor painting 1" class="painting-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="painting-placeholder" style="display:none;">
+          <span>🎨</span>
+          <p>painting-1.jpg</p>
+        </div>
+        <p class="painting-caption">Watercolor, 2024</p>
+      </div>
+
+      <div class="painting-card">
+        <img src="painting-2.jpg" alt="Watercolor painting 2" class="painting-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="painting-placeholder" style="display:none;">
+          <span>🎨</span>
+          <p>painting-2.jpg</p>
+        </div>
+        <p class="painting-caption">Watercolor, 2024</p>
+      </div>
+
+      <div class="painting-card">
+        <img src="painting-3.jpg" alt="Watercolor painting 3" class="painting-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="painting-placeholder" style="display:none;">
+          <span>🎨</span>
+          <p>painting-3.jpg</p>
+        </div>
+        <p class="painting-caption">Sketch, 2023</p>
+      </div>
+
+    </div>
+  </div>
+
   <!-- CONTACT -->
   <div id="contact" class="section">
     <h2 class="section-title">Contact</h2>
     <p class="contact-text">
-      I am open to research collaborations, discussions, and opportunities in neurorobotics and computational neuroscience. The best way to reach me is by <a href="/cdn-cgi/l/email-protection#4001342939256e0e252a21242522322128292d003921282f2f6e232f2d">email</a>. You can also find me on <a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank">LinkedIn</a> or <a href="https://github.com/atiye-nejad" target="_blank">GitHub</a>.
+      I am open to research collaborations, discussions, and opportunities in neurorobotics and computational neuroscience. The best way to reach me is by <a href="mailto:atiyeh.nejadebrahim@gmail.com">email</a>. You can also find me on <a href="https://www.linkedin.com/in/atiyeh-nezhadebrahim-1278194a" target="_blank">LinkedIn</a> or <a href="https://github.com/atiyehnezhadebrahim" target="_blank">GitHub</a>.
     </p>
     <p class="contact-text">
       Based in <strong>Stuttgart, Germany</strong>.
@@ -628,4 +746,8 @@
 </div><!-- /page -->
 
 <footer>
-  © 2025 Atiyeh Nezhadebrahim &nbsp;·&nbsp; Neuror
+  © 2025 Atiyeh Nezhadebrahim &nbsp;·&nbsp; Neurorobotics &amp; Computational Neuroscience
+</footer>
+
+</body>
+</html>
